@@ -1,0 +1,27 @@
+Why you see "Connection failed, please check network connection"
+================================================================
+
+This message is NOT the Leiting login screen anymore. It comes from the
+Unity game code after SDK login, when MyHttpUtil.loginToServer() fails.
+
+What we confirmed from logs (v3 build):
+- SDK guest login runs
+- Unity receives LoginCallBack (SDK login OK)
+- Callback still contained token "offline_token" from an earlier patch
+  that faked guestLogin.do — the real game server rejects that token
+
+v4 change:
+- Removed the fake guestLogin.do response in HttpUtils
+- Phone must reach https://sdkoverseas.leiting.com for a REAL guest token
+- Game still needs https://game.ltgamesglobal.com for account.login / saves
+
+Requirements to play:
+1. Phone has working internet (Wi‑Fi or mobile data)
+2. Leiting SDK servers reachable (guest login)
+3. Game backend reachable (account.login after login)
+
+True fully-offline play (no company servers) is NOT possible from APK patch
+alone — you need recovered Unity source or your own private game server.
+
+Install v4 when built:
+  fury-survivor-v1.066-offline-bypass-v4-aligned-debugSigned.apk
