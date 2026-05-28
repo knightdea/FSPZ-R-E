@@ -1,0 +1,28 @@
+v43 patch notes - Fury Survivor v1.066 offline bypass
+=====================================================
+Date: 2026-05-26
+
+## Goal
+Load MyGameGolbal.mainGame from static_fields, BL openStartBtn on LoginCallBack success.
+
+## Approach (FAILED for Il2CPP load on apktool rebuild)
+Code cave @ 0x18FD5A0 (LoginCallBack success entry):
+  ADRP x8, TypeInfo page (from ref 0x16BCA30)
+  LDR x8, [x8, #0xC08]
+  LDR x8, [x8, #0xB8]   ; static_fields
+  LDR x0, [x8, #0x8]    ; mainGame
+  BL openStartBtn @ 0x16BDD08
+  B epilogue @ 0x18FD620
+Redirect 0x18FD630 -> cave @ 0x18FD5A0
+
+## lib SHA256
+Base v42: B47F461CC378F258E053662A8BEDFC4145AED9C1D85F86A73CB6E89CDAE79509
+v43:      F957685059A566812F545555DDCF67430B8A5BA6FD4142AB41B7C2B50042D722
+
+## Device test
+- apktool rebuild + v43 lib: "Failed to load Il2CPP" (ANALYZE/screens/v43.png)
+- Root cause: overwriting 0x18FD5A0 breaks v42 success branch target (was B 0x14D5874)
+- Do NOT use cave at 0x18FD5A0; use v44 LeitingSdkCallBack hook instead
+
+## Script
+tools/apply_v43_patches.js (UTF-8; run node -e convert if UTF-16)
