@@ -1,0 +1,8 @@
+﻿Fury Survivor REDDIT package checksums (SHA256)
+Generated: 2026-05-28T18:10:36.2019933-04:00
+
+a62ae0adc25e638e41bdde314dfe28c2260a5bd3fc1cf459b2ee81be8d3dac33  apk\fury-survivor-v1.068-offline-bypass-v186.apk
+d35b56b42e8aeb184c8510e4d4c8d42a7ee6c5a1aa7609e4227f0bb0b46fa224  extracted\native\libil2cpp_stock_1068.so
+9badaf9c0217914e2680848df49f213fd53f1892b1895cfa49d7c278a02e4aea  extracted\native\libil2cpp_patched_v186.so
+a84c5eb78fc9fe98d0589f9d57f1c42eff5d4f64489fed0ddb98a5a03996cc90  extracted\il2cpp_dump_1068\dump.cs
+7be279f56940bd5a42b7230f7a07e20a36596962ee8c94a154819628338ea547  tools\apply_v97_1068.js
